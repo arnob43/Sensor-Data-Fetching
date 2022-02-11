@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="padding:10%">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<div>
+    <button id="select">Select</button>
+    <hr></hr>
+    <h2>capture-time: <span id="time"></span></h2>
+  <h2>humidity: <span id="humidity"></span></h2>
+  <h2 >pressure: <span id="pressure"></span></h2>
+  <h2 >temperature: <span id="temperature"></span></h2>
+</div>
+<div>
+  <!-- <button id="select">Select</button> -->
+  <hr></hr>
+  <h2>capture-time: <span id="time1"></span></h2>
+<h2>humidity: <span id="humidity1"></span></h2>
+<h2 >pressure: <span id="pressure1"></span></h2>
+<h2 >temperature: <span id="temperature1"></span></h2>
+</div>
+<hr></hr>
+  <h2>capture-time: <span id="time2"></span></h2>
+<h2>humidity: <span id="humidity2"></span></h2>
+<h2 >pressure: <span id="pressure2"></span></h2>
+<h2 >temperature: <span id="temperature2"></span></h2>
+</div>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDR57nh47YP38pGBj38jHumuWPDssN_3ao",
+    authDomain: "iot-lab-ironman-hkr.firebaseapp.com",
+    databaseURL: "https://iot-lab-ironman-hkr-default-rtdb.firebaseio.com",
+    projectId: "iot-lab-ironman-hkr",
+    storageBucket: "iot-lab-ironman-hkr.appspot.com",
+    messagingSenderId: "1039841073090",
+    appId: "1:1039841073090:web:d803fc89225e602003e85b",
+    measurementId: "G-KV2KR4LH73"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      document.getElementById("select").onclick = function(){
+  
+
+      firebase.database().ref('thingy_IOT_Ironman/d271d77a7e4b/2022-01-17/20:26:26_817').on('value',function(snapshot){
+        const data = snapshot.val();
+        var key = snapshot.key
+        const time = key.slice(0, 8);
+        const hum=snapshot.val().humidity;
+        const temp=snapshot.val().temperature;
+        const press=snapshot.val().pressure;
+        document.getElementById('time').innerHTML = time
+        document.getElementById('humidity').innerHTML = hum
+        document.getElementById('pressure').innerHTML=press
+        document.getElementById('temperature').innerHTML=temp
+  
+        });
+        firebase.database().ref('thingy_IOT_Ironman/d271d77a7e4b/2022-01-17/20:27:26_809').on('value',function(snapshot1){
+        const data = snapshot1.val();
+        var key = snapshot1.key
+        const time = key.slice(0, 8);
+        const hum=snapshot1.val().humidity;
+        const temp=snapshot1.val().temperature;
+        const press=snapshot1.val().pressure;
+        document.getElementById('time1').innerHTML = time
+        document.getElementById('humidity1').innerHTML = hum
+        document.getElementById('pressure1').innerHTML=press
+        document.getElementById('temperature1').innerHTML=temp
+  
+        });
+        firebase.database().ref('thingy_IOT_Ironman/d271d77a7e4b/2022-01-17/20:28:26_806').on('value',function(snapshot){
+        const data = snapshot.val();
+        var key = snapshot.key
+        const time = key.slice(0, 8);
+        const hum=snapshot.val().humidity;
+        const temp=snapshot.val().temperature;
+        const press=snapshot.val().pressure;
+        document.getElementById('time2').innerHTML = time
+        document.getElementById('humidity2').innerHTML = hum
+        document.getElementById('pressure2').innerHTML=press
+        document.getElementById('temperature2').innerHTML=temp
+  console.log(data)
+        });
+      }
+    </script>
+
+  </body>
+</html>
